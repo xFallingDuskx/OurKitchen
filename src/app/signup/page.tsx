@@ -1,6 +1,6 @@
 'use client'
-import React from "react"
-import signUpUser from "@/firebase/auth/signUp"
+import React from 'react'
+import signUpUser from '@/firebase/auth/signUp'
 import { useRouter } from 'next/navigation'
 import { Button, Form } from 'react-bootstrap'
 import { Formik } from 'formik'
@@ -19,27 +19,27 @@ function Page() {
         }
 
         console.log(result)
-        return router.push("/")
+        return router.push('/')
     }
 
     const passwordValidation = yup.string()
         .trim()
-        .required("Required")
+        .required('Required')
         .matches(
             /(?=.*[A-Z])/,
-            "Your password must have at least one capital letter"
+            'Your password must have at least one capital letter'
         )
         .matches(
             /(?=.*[!@#$%^&*])/,
-            "Your password must have at least one special character"
+            'Your password must have at least one special character'
         )
         .matches(
             /(?=.*[a-z])/,
-            "Your password must have at least one lower case character"
+            'Your password must have at least one lower case character'
         )
-        .matches(/(?=.*[0-9])/, "Your password must have at least one number")
-        .min(8, "Your password must have at least 8 characters")
-        .max(20, "Your password must have no more than 20 characters")
+        .matches(/(?=.*[0-9])/, 'Your password must have at least one number')
+        .min(8, 'Your password must have at least 8 characters')
+        .max(20, 'Your password must have no more than 20 characters')
 
     const passwordConfirmation = yup.string()
         .when('password', {
@@ -57,8 +57,8 @@ function Page() {
     })
 
     return (
-        <div className="place-self-center max-w-md w-full p-5 shadow-xl">
-            <h1 className="mb-10 font-extrabold text-4xl text-center">Create Account</h1>
+        <div className='place-self-center my-auto max-w-md w-full p-5 shadow-xl'>
+            <h1 className='mb-10 font-extrabold text-4xl text-center'>Create Account</h1>
             <Formik
                 initialValues={{
                     email: '',
@@ -72,61 +72,61 @@ function Page() {
             >
                 {({ handleSubmit, handleChange, values, touched, errors }) => (
                     <Form noValidate onSubmit={handleSubmit}>
-                        <Form.Group className="mb-3" controlId="formEmail">
+                        <Form.Group className='mb-3' controlId='formEmail'>
                             <Form.Label>Email</Form.Label>
                             <Form.Control
-                                type="email"
-                                name="email"
-                                placeholder="noobcook@email.com"
-                                aria-label="email"
+                                type='email'
+                                name='email'
+                                placeholder='noobcook@email.com'
+                                aria-label='email'
                                 value={values.email}
                                 onChange={handleChange}
                                 isValid={touched.email && !errors.email}
                                 isInvalid={!!errors.email}
                             />
-                            <Form.Control.Feedback type="invalid">
+                            <Form.Control.Feedback type='invalid'>
                                 {errors.email}
                             </Form.Control.Feedback>
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formPassword">
+                        <Form.Group className='mb-3' controlId='formPassword'>
                             <Form.Label>Password</Form.Label>
                             <Form.Control
-                                type="password"
-                                name="password"
-                                aria-label="password"
-                                aria-describedby="passwordCriteria"
+                                type='password'
+                                name='password'
+                                aria-label='password'
+                                aria-describedby='passwordCriteria'
                                 value={values.password}
                                 onChange={handleChange}
                                 isValid={touched.password && !errors.password}
                                 isInvalid={!!errors.password}
                             />
-                            <Form.Text id="passwordCriteria" muted>
+                            <Form.Text id='passwordCriteria' muted>
                                 Your password must be 8-20 characters long and contain at least 1 number,
                                 1 capital letter, and 1 special character.
                             </Form.Text>
 
-                            <Form.Control.Feedback type="invalid">
+                            <Form.Control.Feedback type='invalid'>
                                 {errors.password}
                             </Form.Control.Feedback>
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formPasswordConfirmation">
+                        <Form.Group className='mb-3' controlId='formPasswordConfirmation'>
                             <Form.Label>Confirm Password</Form.Label>
                             <Form.Control
-                                type="password"
-                                name="confirmPassword"
+                                type='password'
+                                name='confirmPassword'
                                 value={values.confirmPassword}
                                 onChange={handleChange}
                                 isValid={touched.confirmPassword && !errors.confirmPassword}
                                 isInvalid={!!errors.confirmPassword}
                             />
 
-                            <Form.Control.Feedback type="invalid">
+                            <Form.Control.Feedback type='invalid'>
                                 {errors.confirmPassword}
                             </Form.Control.Feedback>
                         </Form.Group>
-                        <Button type="submit" className="block w-fit max-w-xs mt-5 mx-auto bg-sky-500 border-transparent">Get Started</Button>
+                        <Button type='submit' className='block w-fit max-w-xs mt-5 mx-auto bg-sky-500 border-transparent'>Get Started</Button>
                     </Form>
                 )}
             </Formik>
